@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://b87d8s0ergndy"]
+
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_24wqo"]
+[ext_resource type="Shader" path="res://node_2d.gdshader" id="2_8rj30"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trxbp"]
+shader = ExtResource("2_8rj30")
+shader_parameter/amount = 1.0
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_24wqo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_trxbp")
+custom_minimum_size = Vector2(1000, 800)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -400.0
+offset_right = 500.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.278431)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_bottom = 180.0
+grow_horizontal = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+z_index = 5
+layout_mode = 2
+color = Color(0.0745098, 0.0705882, 0.109804, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_right = 154.0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Resume" type="Button" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.160784, 0.439216, 0.45098, 1)
+theme_override_colors/font_hover_color = Color(0.207843, 0.588235, 0.482353, 1)
+text = "Resume"
+alignment = 0
+
+[node name="Restart" type="Button" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Respawn"
+
+[node name="Quit" type="Button" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Quit to Main Menu"
+
+[connection signal="pressed" from="MarginContainer/ColorRect/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/ColorRect/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/ColorRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

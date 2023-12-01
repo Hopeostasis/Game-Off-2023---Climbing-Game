@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4j4pwm0xvesg"]
+
+[ext_resource type="Script" path="res://RigidBody2D.gd" id="1_favkn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brn0n"]
+size = Vector2(32, 32)
+
+[node name="Box" type="RigidBody2D"]
+position = Vector2(64, 0)
+collision_layer = 4
+collision_mask = 2
+input_pickable = true
+script = ExtResource("1_favkn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_brn0n")
+
+[node name="Box1" type="Sprite2D" parent="."]
+texture_filter = 1
